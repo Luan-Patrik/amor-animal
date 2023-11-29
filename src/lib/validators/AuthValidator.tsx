@@ -1,7 +1,7 @@
 import z from 'zod'
 
 export const SignInValidator = z.object({
-  email: z.string().email({ message: ' ' }).min(1, { message: ' ' }).max(255),
+  email: z.string().min(1).max(255),
   password: z.string().min(1)
 })
 

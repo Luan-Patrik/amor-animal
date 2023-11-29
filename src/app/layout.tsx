@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { Lato } from 'next/font/google'
 import './globals.css'
+import Providers from '@/components/Providers'
+import Navbar from '@/components/header/Navbar'
+import { Toaster } from '@/components/ui/toaster'
 
 const lato = Lato({
   subsets: ['latin'],
@@ -12,9 +15,9 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: 'Amor Animal',
   description:
-    'Um site que divulga a causa animal e sensibiliza as pessoas sobre a importância da adoção. O site apresenta os animais que estão para adoção em diversas instituições parceiras.',
+    'Um site que divulga animais perdidos ou abandonado e sensibiliza as pessoas sobre a importância da adoção. O site apresenta os animais que estão para adoção e precisando do seu carinho.',
   icons: {
-    icon: '/assets/dog.webp'
+    icon: '/assets/logo.webp'
   }
 }
 
@@ -26,7 +29,11 @@ export default function RootLayout({
   return (
     <html lang='pt' className={lato.variable}>
       <body>
-        <main>{children}</main>
+        <Providers>
+          <Navbar />
+          <main>{children}</main>
+          <Toaster />
+        </Providers>
       </body>
     </html>
   )
