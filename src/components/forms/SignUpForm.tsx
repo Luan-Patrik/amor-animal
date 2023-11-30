@@ -10,16 +10,17 @@ import {
   FormMessage
 } from '../ui/form'
 import { Input } from '../ui/input'
-import BaseForm from './BaseForm'
+import BaseFormAuth from './BaseFormAuth'
 import { SignUpRequest, SignUpValidator } from '@/lib/validators/AuthValidator'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios, { AxiosError } from 'axios'
 import { Button } from '../ui/button'
 import { useMutation } from '@tanstack/react-query'
 import { useToast } from '../ui/use-toast'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { Loader2Icon } from 'lucide-react'
 import { signIn } from 'next-auth/react'
+import Mask from '../Mask'
 
 const SignUpForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -31,16 +32,23 @@ const SignUpForm = () => {
       name: '',
       nickname: '',
       email: '',
+      phone: '',
       password: '',
       confirmPassword: ''
     }
   })
+
+  const onPhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const maskedPhone = Mask(event.target.value, '(##) # ####-####', 'numbers')
+    form.setValue('phone', maskedPhone)
+  }
 
   const { mutate: SignUp } = useMutation({
     mutationFn: async ({
       name,
       nickname,
       email,
+      phone,
       password,
       confirmPassword
     }: SignUpRequest) => {
@@ -49,6 +57,7 @@ const SignUpForm = () => {
         name,
         nickname,
         email,
+        phone,
         password,
         confirmPassword
       }
@@ -87,6 +96,7 @@ const SignUpForm = () => {
       name: form.getValues('name'),
       nickname: form.getValues('nickname'),
       email: form.getValues('email'),
+      phone: form.getValues('phone').replace(/\D/g, ''),
       password: form.getValues('password'),
       confirmPassword: form.getValues('confirmPassword')
     }
@@ -94,13 +104,13 @@ const SignUpForm = () => {
   }
 
   return (
-    <BaseForm
+    <BaseFormAuth
       header='Criar conta'
       footerLink='/entrar'
       footerLinkText='Já possui uma conta?'>
       <Form {...form}>
         <form
-          className='space-y-2 flex-grow'
+          className='flex-grow space-y-2'
           onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
@@ -111,8 +121,9 @@ const SignUpForm = () => {
                 <FormControl>
                   <Input
                     id='name'
-                    {...form.register('name')}
                     type='text'
+                    autoComplete='name'
+                    {...form.register('name')}
                     {...field}
                   />
                 </FormControl>
@@ -130,6 +141,7 @@ const SignUpForm = () => {
                   <Input
                     id='nickname'
                     type='text'
+                    autoComplete='nickname'
                     {...form.register('nickname')}
                     {...field}
                   />
@@ -151,6 +163,26 @@ const SignUpForm = () => {
                     autoComplete='email'
                     {...form.register('email')}
                     {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='phone'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Telefone</FormLabel>
+                <FormControl>
+                  <Input
+                    id='phone'
+                    type='text'
+                    autoComplete='tel'
+                    {...form.register('phone')}
+                    {...field}
+                    onChange={onPhoneChange}
                   />
                 </FormControl>
                 <FormMessage />
@@ -201,14 +233,14 @@ const SignUpForm = () => {
             className='w-full'
             variant='default'>
             {isLoading ? (
-              <Loader2Icon className='animate-spin w-[1.2rem] h-[1.2rem]' />
+              <Loader2Icon className='h-[1.2rem] w-[1.2rem] animate-spin' />
             ) : (
               'Criar conta'
             )}
           </Button>
         </form>
       </Form>
-    </BaseForm>
+    </BaseFormAuth>
   )
 }
 

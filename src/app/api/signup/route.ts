@@ -15,7 +15,8 @@ export async function POST(req: Request) {
 
     const body = await req.json()
 
-    const { name, nickname, email, password } = SignUpValidator.parse(body)
+    const { name, nickname, email, phone, password } =
+      SignUpValidator.parse(body)
 
     const nicknameExist = await prisma.user.findUnique({
       where: {
@@ -24,7 +25,9 @@ export async function POST(req: Request) {
     })
 
     if (nicknameExist) {
-      return new NextResponse('Apelido já cadastrado.', { status: 409 })
+      return new NextResponse('Apelido já cadastrado, tente usar outro.', {
+        status: 409
+      })
     }
 
     const emailExist = await prisma.user.findUnique({
@@ -34,7 +37,21 @@ export async function POST(req: Request) {
     })
 
     if (emailExist) {
-      return new NextResponse('Email já cadastrado.', { status: 409 })
+      return new NextResponse('Email já cadastrado, tente usar outro.', {
+        status: 409
+      })
+    }
+
+    const phoneExist = await prisma.user.findUnique({
+      where: {
+        phone
+      }
+    })
+
+    if (phoneExist) {
+      return new NextResponse('Telefone já cadastrado, tente usar outro.', {
+        status: 409
+      })
     }
 
     const hashedPassword = await bcrypt.hash(password, 12)
@@ -44,6 +61,7 @@ export async function POST(req: Request) {
         name,
         nickname,
         email,
+        phone,
         password: hashedPassword
       }
     })

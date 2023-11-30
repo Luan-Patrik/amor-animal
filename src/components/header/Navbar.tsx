@@ -6,8 +6,8 @@ const Navbar = async () => {
   const session = await auth()
 
   return (
-    <header className='sticky inset-x-0 top-0 z-50 border-b drop-shadow-md bg-background py-2'>
-      <nav className='container flex justify-between items-center'>
+    <header className='sticky inset-x-0 top-0 z-50 border-b bg-background drop-shadow-md'>
+      <nav className='container flex h-14 items-center justify-between'>
         <Image
           src='/assets/logo.webp'
           alt='Logo'

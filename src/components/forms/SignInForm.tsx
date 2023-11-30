@@ -1,15 +1,9 @@
 'use client'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from '../ui/form'
+import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form'
 import { Input } from '../ui/input'
-import BaseForm from './BaseForm'
+import BaseFormAuth from './BaseFormAuth'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SignInRequest, SignInValidator } from '@/lib/validators/AuthValidator'
 import { Button } from '../ui/button'
@@ -70,13 +64,13 @@ const SignInForm = () => {
   }
 
   return (
-    <BaseForm
+    <BaseFormAuth
       header='Entrar na conta'
       footerLink='/cadastrar'
       footerLinkText='Não possui uma conta?'>
       <Form {...form}>
         <form
-          className='space-y-2 flex-grow'
+          className='flex-grow space-y-2'
           onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
@@ -118,14 +112,14 @@ const SignInForm = () => {
             className='w-full'
             variant='default'>
             {isLoading ? (
-              <Loader2Icon className='animate-spin w-[1.2rem] h-[1.2rem]' />
+              <Loader2Icon className='h-[1.2rem] w-[1.2rem] animate-spin' />
             ) : (
               'Entrar conta'
             )}
           </Button>
         </form>
       </Form>
-    </BaseForm>
+    </BaseFormAuth>
   )
 }
 

@@ -16,6 +16,9 @@ module.exports = {
       }
     },
     extend: {
+      screens: {
+        'very-xs': '320px'
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

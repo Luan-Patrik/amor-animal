@@ -26,13 +26,14 @@ const UserNavbar = ({ session }: UserNavbarProps) => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
-              className='group h-auto min-w-[4rem] max-w-[6rem] rounded-full w-full relative sm:max-w-[8rem] overflow-hidden flex justify-between items-center p-0'
-              variant={'outline'}>
+              className='group relative flex w-full min-w-[4rem] max-w-[6rem] items-center justify-between overflow-hidden rounded-full px-0 py-1 sm:max-w-[8rem]'
+              variant='outline'
+              size='default'>
               <p className='overflow-hidden text-ellipsis px-1'>
                 {session?.user.name}
               </p>
-              <Avatar className='aspect-square p-2 rounded-full scale-90 h-auto w-auto group-data-[state="open"]:scale-100 transition-all bg-input'>
-                <User2 className='w-[1.2rem] h-[1.2rem]' />
+              <Avatar className='flex aspect-square h-10 w-10 scale-90 items-center justify-center rounded-full bg-input transition-all group-data-[state="open"]:scale-100'>
+                <User2 className='h-[1.2rem] w-[1.2rem]' />
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
@@ -43,21 +44,25 @@ const UserNavbar = ({ session }: UserNavbarProps) => {
             <DropdownMenuItem>4</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-              className='text-destructive font-bold'
+              className='font-bold text-destructive'
               onClick={async () => await signOut()}>
               Sair
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <div>
+        <div className='gap-2'>
           <Link
-            className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }))}
+            className={cn(
+              buttonVariants({ variant: 'ghost', size: 'default' })
+            )}
             href='/entrar'>
             Entrar
           </Link>
           <Link
-            className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }))}
+            className={cn(
+              buttonVariants({ variant: 'ghost', size: 'default' })
+            )}
             href='/cadastrar'>
             Cadastrar
           </Link>
