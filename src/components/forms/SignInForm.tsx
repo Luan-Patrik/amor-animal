@@ -112,7 +112,11 @@ const SignInForm = () => {
             className='w-full'
             variant='default'>
             {isLoading ? (
-              <Loader2Icon className='h-[1.2rem] w-[1.2rem] animate-spin' />
+              <Loader2Icon
+                aria-hidden='true'
+                focusable='false'
+                className='h-[1.2rem] w-[1.2rem] animate-spin'
+              />
             ) : (
               'Entrar conta'
             )}

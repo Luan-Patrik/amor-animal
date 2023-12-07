@@ -6,7 +6,7 @@ import {
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { getServerSession } from 'next-auth/next'
-import bcrypt from 'bcrypt'
+import bcryptjs from 'bcryptjs'
 import { NextAuthOptions } from 'next-auth'
 import prisma from './db'
 
@@ -20,8 +20,8 @@ export const config = {
       name: 'credentials',
       id: 'credentials',
       credentials: {
-        email: { type: 'text' },
-        password: { type: 'password' }
+        email: {},
+        password: {}
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
@@ -38,7 +38,7 @@ export const config = {
           throw new Error('Credenciais inválidas.')
         }
 
-        const isCorrectPassword = await bcrypt.compare(
+        const isCorrectPassword = await bcryptjs.compare(
           credentials.password,
           user.password
         )

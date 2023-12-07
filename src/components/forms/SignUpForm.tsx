@@ -84,7 +84,7 @@ const SignUpForm = () => {
           title: 'Algo deu errado.',
           description: error.response
             ? error.response.data
-            : 'Tente novamente mais tarde.',
+            : 'Ops! Algo deu errado. Por favor, tente novamente mais tarde.',
           variant: 'destructive'
         })
       }
@@ -96,7 +96,7 @@ const SignUpForm = () => {
       name: form.getValues('name'),
       nickname: form.getValues('nickname'),
       email: form.getValues('email'),
-      phone: form.getValues('phone').replace(/\D/g, ''),
+      phone: form.getValues('phone'),
       password: form.getValues('password'),
       confirmPassword: form.getValues('confirmPassword')
     }
@@ -233,7 +233,11 @@ const SignUpForm = () => {
             className='w-full'
             variant='default'>
             {isLoading ? (
-              <Loader2Icon className='h-[1.2rem] w-[1.2rem] animate-spin' />
+              <Loader2Icon
+                aria-hidden='true'
+                focusable='false'
+                className='h-[1.2rem] w-[1.2rem] animate-spin'
+              />
             ) : (
               'Criar conta'
             )}

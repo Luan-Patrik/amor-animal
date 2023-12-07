@@ -28,8 +28,7 @@ export const SignUpValidator = z
       .max(255, { message: 'Deve conter no máximo 255 caracteres.' }),
     phone: z
       .string()
-      .min(16, { message: 'Telefone inválido.' })
-      .max(16, { message: 'Telefone inválido.' }),
+      .regex(/^\(\d{2}\) 9 \d{4}-\d{4}$/, 'Telefone inválido.'),
     password: z
       .string()
       .min(8, { message: 'Deve conter no mínimo 8 caracteres.' })

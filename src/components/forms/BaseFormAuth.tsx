@@ -39,9 +39,9 @@ const BaseFormAuth = (props: BaseFormAuthProps) => {
             title='Voltar ao início.'
             aria-label='Voltar ao início.'>
             <XIcon
+              aria-hidden='true'
+              focusable='false'
               className='h-[1.2rem] w-[1.2rem]'
-              aria-hidden={true}
-              focusable={false}
             />
           </Link>
           <CardContent>{props.children}</CardContent>
@@ -55,9 +55,9 @@ const BaseFormAuth = (props: BaseFormAuthProps) => {
                 href={props.footerLink}>
                 {props.footerLinkText}
                 <ArrowRightIcon
+                  aria-hidden='true'
+                  focusable='false'
                   className='h-[1.2rem] w-[1.2rem]'
-                  aria-hidden={true}
-                  focusable={false}
                 />
               </Link>
             </CardFooter>
