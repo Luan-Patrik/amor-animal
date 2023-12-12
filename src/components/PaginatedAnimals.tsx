@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import Animals from './Animals'
 import PaginationPage from './PaginationPage'
 
@@ -10,6 +10,8 @@ interface PaginatedAnimalsProps {
 }
 
 const PaginatedAnimals = ({ page, totalItems }: PaginatedAnimalsProps) => {
+  if (Number(page) < 1 || !Number(page)) return notFound()
+
   return (
     <>
       <Animals page={page} postsPerPage={12} />

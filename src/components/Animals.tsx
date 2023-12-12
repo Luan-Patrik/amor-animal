@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { Icons } from './ui/Icons'
 import { buttonVariants } from './ui/button'
-import { notFound } from 'next/navigation'
+import AnimalsSkeleton from './AnimalsSkeleton'
 
 interface AnimalsProps {
   page: string | number
@@ -18,11 +18,16 @@ interface AnimalsProps {
 const Animals = ({ page, postsPerPage }: AnimalsProps) => {
   const { data, isLoading } = useGetAnimals(page, postsPerPage)
 
-  if (isLoading) 'Loading...'
+  if (isLoading) return <AnimalsSkeleton items={Number(postsPerPage)} />
 
-  if (!data) return
+  if (!data) return null
 
-  if (data.length === 0) return <div></div>
+  if (data.length === 0)
+    return (
+      <h1 className='text-center text-lg font-semibold very-xs:text-xl'>
+        Nenhum animal encontrado.
+      </h1>
+    )
 
   return (
     <div className='container flex flex-wrap justify-center gap-2'>

@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation'
 import { dotts } from '../components/PaginationPage'
 
 const getPages = (length: number, inc: number = 1) =>
@@ -27,7 +28,7 @@ export default function usePagination(
       currentPage,
       currentPage + 1,
       dotts,
-      totalPages,
+      totalPages
     ]
   }
   // -> 1 ... 7 8 9 10
