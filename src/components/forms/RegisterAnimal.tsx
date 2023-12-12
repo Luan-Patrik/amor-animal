@@ -71,8 +71,10 @@ const RegisterAnimal = () => {
       const { data } = await axios.post('/api/registerAnimal', payload)
       return data
     },
+    onSettled: () => {
+      queryClient.invalidateQueries()
+    },
     onSuccess: () => {
-      queryClient.refetchQueries()
       router.push('/')
     },
     onError: () => {

@@ -31,7 +31,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <Navbar />
-          <main>{children}</main>
+          <main className='py-4'>{children}</main>
           <Toaster />
         </Providers>
       </body>

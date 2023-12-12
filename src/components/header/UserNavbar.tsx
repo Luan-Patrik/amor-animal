@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger
 } from '../ui/dropdown-menu'
 import { Avatar } from '../ui/avatar'
-import { User2 } from 'lucide-react'
+import { User2Icon } from 'lucide-react'
 import { Button, buttonVariants } from '../ui/button'
 import { Session } from 'next-auth'
 import { signOut } from 'next-auth/react'
@@ -32,16 +32,20 @@ const UserNavbar = ({ session }: UserNavbarProps) => {
               <p className='overflow-hidden text-ellipsis px-1'>
                 {session?.user.name}
               </p>
-              <Avatar className='flex aspect-square h-10 w-10 scale-90 items-center justify-center rounded-full bg-input transition-all group-data-[state="open"]:scale-100'>
-                <User2 className='h-[1.2rem] w-[1.2rem]' />
+              <Avatar className='-mr-[0.05rem] flex aspect-square h-10 w-10 scale-90 items-center justify-center rounded-full bg-input transition-all group-data-[state="open"]:scale-100'>
+                <User2Icon
+                  aria-hidden='true'
+                  focusable='false'
+                  className='h-[1.2rem] w-[1.2rem]'
+                />
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem>1</DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href=''>Meus animais</Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>2</DropdownMenuItem>
-            <DropdownMenuItem>3</DropdownMenuItem>
-            <DropdownMenuItem>4</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem
               className='font-bold text-destructive'
