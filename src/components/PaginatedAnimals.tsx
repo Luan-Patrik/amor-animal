@@ -14,7 +14,7 @@ const PaginatedAnimals = ({ page, totalItems }: PaginatedAnimalsProps) => {
 
   return (
     <>
-      <Animals page={page} postsPerPage={12} />
+      <Animals page={page} postsPerPage={12} totalItems={totalItems}/>
       <PaginationPage
         currentPage={Number(page)}
         postsPerPage={12}
