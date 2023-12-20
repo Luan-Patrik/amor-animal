@@ -64,9 +64,11 @@ const Animals = ({ page, postsPerPage, totalItems }: AnimalsProps) => {
               href={`/animal/${item.name}/${item.id}`}
               className={cn(
                 buttonVariants({ variant: 'link' }),
-                'h-auto p-0 text-lg font-bold leading-relaxed ring-offset-muted first-letter:uppercase'
+                'h-auto overflow-hidden p-0 ring-offset-muted '
               )}>
-              {item.name}
+              <p className='w-full overflow-hidden text-ellipsis whitespace-nowrap text-lg font-bold first-letter:uppercase'>
+                {item.name}
+              </p>
             </Link>
             <Link
               href={`https://api.whatsapp.com/send?phone=55${item.User.phone.replace(

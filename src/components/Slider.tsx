@@ -24,7 +24,6 @@ const Slider = ({ children, haveAutoplay }: SliderProps) => {
             `
         }
       }}
-      loop={true}
       autoplay={
         haveAutoplay ? { delay: 3000, disableOnInteraction: false } : false
       }
