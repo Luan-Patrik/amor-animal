@@ -25,13 +25,18 @@ export async function GET(req: Request) {
         files: true,
         userId: true,
         description: true,
-        User: {
+        createdAt: true,
+        updatedAt: true,
+        user: {
           select: {
             id: true,
             nickname: true,
             phone: true
           }
         }
+      },
+      orderBy: {
+        createdAt: 'desc'
       }
     })
 

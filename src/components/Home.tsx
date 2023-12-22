@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { buttonVariants } from './ui/button'
 import { cn } from '@/lib/utils'
-import Image from 'next/image'
 
 const Home = () => {
   return (

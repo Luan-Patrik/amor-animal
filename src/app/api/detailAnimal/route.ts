@@ -5,24 +5,21 @@ import { z } from 'zod'
 export async function GET(req: Request) {
   const url = new URL(req.url)
 
-  const { name, id } = z
+  const { id } = z
     .object({
-      name: z.string(),
       id: z.string().regex(/^[0-9a-fA-F]+$/)
     })
     .parse({
-      name: url.searchParams.get('name'),
       id: url.searchParams.get('id')
     })
 
   try {
     const detailAnimal = await prisma.animals.findFirst({
       where: {
-        name: name,
         id: id
       },
       include: {
-        User: {
+        user: {
           select: {
             id: true,
             nickname: true,

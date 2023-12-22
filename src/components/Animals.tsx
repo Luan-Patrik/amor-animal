@@ -61,7 +61,7 @@ const Animals = ({ page, postsPerPage, totalItems }: AnimalsProps) => {
           </Slider>
           <div className='flex flex-col items-center justify-center gap-2 very-xs:flex-row very-xs:justify-between'>
             <Link
-              href={`/animal/${item.name}/${item.id}`}
+              href={`/animal/${item.id}`}
               className={cn(
                 buttonVariants({ variant: 'link' }),
                 'h-auto overflow-hidden p-0 ring-offset-muted '
@@ -71,7 +71,7 @@ const Animals = ({ page, postsPerPage, totalItems }: AnimalsProps) => {
               </p>
             </Link>
             <Link
-              href={`https://api.whatsapp.com/send?phone=55${item.User.phone.replace(
+              href={`https://api.whatsapp.com/send?phone=55${item.user.phone.replace(
                 /\D/g,
                 ''
               )}`}
@@ -83,7 +83,7 @@ const Animals = ({ page, postsPerPage, totalItems }: AnimalsProps) => {
                 'h-auto gap-0.5 p-0 leading-relaxed ring-offset-muted'
               )}>
               <Icons.whatsapp className='h-[1.2rem] w-[1.2rem] fill-green-500' />
-              {item.User.phone}
+              {item.user.phone}
             </Link>
           </div>
         </div>
