@@ -13,18 +13,18 @@ import { Slider } from './Slider'
 import Image from 'next/image'
 import DetailAnimalSkeleton from './DetailAnimalSkeleton'
 import OwnerAnimalContact from './OwnerAnimalContact'
+import { notFound } from 'next/navigation'
 
 interface DetailAnimalProps {
-  name: string
   id: string
 }
 
-const DetailAnimal = ({ name, id }: DetailAnimalProps) => {
-  const { data, isLoading } = useGetDetailAnimal(name, id)
+const DetailAnimal = ({ id }: DetailAnimalProps) => {
+  const { data, isLoading } = useGetDetailAnimal(id)
 
   if (isLoading) return <DetailAnimalSkeleton />
 
-  if (!data) return
+  if (!data) return notFound()
 
   return (
     <section className='container flex flex-col gap-2 lg:flex-row'>
@@ -54,8 +54,8 @@ const DetailAnimal = ({ name, id }: DetailAnimalProps) => {
         </CardContent>
       </Card>
       <OwnerAnimalContact
-        nickname={data.User.nickname}
-        phone={data.User.phone}
+        nickname={data.user.nickname}
+        phone={data.user.phone}
       />
     </section>
   )

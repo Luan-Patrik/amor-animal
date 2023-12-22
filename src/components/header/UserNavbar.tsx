@@ -43,9 +43,11 @@ const UserNavbar = ({ session }: UserNavbarProps) => {
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem asChild>
-              <Link href=''>Meus animais</Link>
+              <Link href='/animais/1'>Ver animais</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>2</DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href='/cadastrar-animal'>Cadastrar animal</Link>
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem
               className='font-bold text-destructive'

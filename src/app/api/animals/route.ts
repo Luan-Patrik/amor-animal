@@ -1,3 +1,4 @@
+import { POSTS_PER_PAGE } from '@/config'
 import prisma from '@/lib/db'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
@@ -12,7 +13,7 @@ export async function GET(req: Request) {
     })
     .parse({
       page: url.searchParams.get('page') ?? '1',
-      postsPerPage: url.searchParams.get('postsPerPage') ?? '12'
+      postsPerPage: url.searchParams.get('postsPerPage') ?? POSTS_PER_PAGE
     })
 
   try {

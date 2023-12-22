@@ -2,6 +2,7 @@ import usePagination from '@/hooks/use-pagination'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { buttonVariants } from './ui/button'
+import { POSTS_PER_PAGE } from '@/config'
 
 export interface PaginationProps {
   totalItems: number
@@ -15,7 +16,7 @@ export const dotts = '...'
 const PaginationPage = ({
   totalItems,
   currentPage,
-  postsPerPage = 12,
+  postsPerPage = POSTS_PER_PAGE,
   renderPageLink
 }: PaginationProps) => {
   const pages = usePagination(totalItems, currentPage, postsPerPage)

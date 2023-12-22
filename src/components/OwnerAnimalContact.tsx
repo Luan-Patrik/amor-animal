@@ -10,20 +10,20 @@ interface OwnerAnimalContactProps {
 
 const OwnerAnimalContact = ({ nickname, phone }: OwnerAnimalContactProps) => {
   return (
-    <Card className='h-fit w-full lg:sticky lg:top-[4.6rem] lg:w-[28rem]'>
+    <Card className='h-fit w-full overflow-x-auto lg:sticky lg:top-[4.6rem] lg:w-[28rem]'>
       <CardHeader className='px-2'>
         <CardTitle>Entre em contato</CardTitle>
       </CardHeader>
       <CardContent className='flex flex-col px-2 text-base font-bold'>
-        <div className='inline-flex gap-2'>
+        <div className='inline-flex flex-wrap gap-2'>
           <span className='whitespace-nowrap'>Dono (a):</span>
           <Link
             href={`/${nickname}`}
             className={cn(
               buttonVariants({ variant: 'link' }),
-              'h-auto overflow-hidden p-0'
+              'h-auto p-0 text-foreground'
             )}>
-            <p className='overflow-hidden text-ellipsis'>{nickname}</p>
+            {nickname}
           </Link>
         </div>
         <div className='inline-flex flex-wrap gap-2'>
@@ -38,14 +38,14 @@ const OwnerAnimalContact = ({ nickname, phone }: OwnerAnimalContactProps) => {
             rel='noopener noreferrer'
             className={cn(
               buttonVariants({ variant: 'link' }),
-              'h-auto gap-0.5 p-0'
+              'h-auto p-0 text-foreground'
             )}>
             {phone}
           </Link>
         </div>
       </CardContent>
       <CardFooter className='justify-center px-2 text-center font-bold text-muted-foreground'>
-        “Ajude esse pet a encontrar seu lar.”
+        <span>“Ajude esse pet a encontrar seu lar.”</span>
       </CardFooter>
     </Card>
   )
