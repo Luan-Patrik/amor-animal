@@ -1,8 +1,8 @@
 'use client'
 
-import { ReactNode, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { SessionProvider } from 'next-auth/react'
+import { ReactNode, useState } from 'react'
 
 /**
  * Create a Provider component that wraps the given children with the necessary providers.

@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default async function NotFound() {
   return (
     <div className='flex min-h-[calc(100svh_-_5.54rem)] flex-col items-center justify-center'>

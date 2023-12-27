@@ -1,13 +1,13 @@
+import { PrismaAdapter } from '@auth/prisma-adapter'
+import bcryptjs from 'bcryptjs'
 import {
   GetServerSidePropsContext,
   NextApiRequest,
   NextApiResponse
 } from 'next'
-import { PrismaAdapter } from '@auth/prisma-adapter'
-import CredentialsProvider from 'next-auth/providers/credentials'
-import { getServerSession } from 'next-auth/next'
-import bcryptjs from 'bcryptjs'
 import { NextAuthOptions } from 'next-auth'
+import { getServerSession } from 'next-auth/next'
+import CredentialsProvider from 'next-auth/providers/credentials'
 import prisma from './db'
 
 export const config = {

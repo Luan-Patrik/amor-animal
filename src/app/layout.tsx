@@ -1,9 +1,9 @@
-import type { Metadata } from 'next'
-import { Lato } from 'next/font/google'
-import './globals.css'
 import Providers from '@/components/Providers'
 import Navbar from '@/components/header/Navbar'
 import { Toaster } from '@/components/ui/toaster'
+import type { Metadata } from 'next'
+import { Lato } from 'next/font/google'
+import './globals.css'
 
 const lato = Lato({
   subsets: ['latin'],

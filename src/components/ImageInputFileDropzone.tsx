@@ -1,6 +1,6 @@
 import { UploadCloudIcon, XIcon } from 'lucide-react'
 import Image from 'next/image'
-import { forwardRef, useEffect, useMemo, useState } from 'react'
+import { forwardRef, useMemo, useState } from 'react'
 import { useDropzone, type DropzoneOptions } from 'react-dropzone'
 import { twMerge } from 'tailwind-merge'
 import { Button } from './ui/button'

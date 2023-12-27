@@ -1,9 +1,9 @@
 'use client'
 
+import { POSTS_PER_PAGE } from '@/config'
 import { notFound } from 'next/navigation'
 import Animals from './Animals'
 import PaginationPage from './PaginationPage'
-import { POSTS_PER_PAGE } from '@/config'
 
 interface PaginatedAnimalsProps {
   page: string | number

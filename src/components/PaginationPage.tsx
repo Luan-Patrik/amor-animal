@@ -1,8 +1,8 @@
+import { POSTS_PER_PAGE } from '@/config'
 import usePagination from '@/hooks/use-pagination'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { buttonVariants } from './ui/button'
-import { POSTS_PER_PAGE } from '@/config'
 
 export interface PaginationProps {
   totalItems: number
