@@ -1,6 +1,15 @@
 'use client'
 
+import { SignUpRequest, SignUpValidator } from '@/lib/validators/AuthValidator'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation } from '@tanstack/react-query'
+import axios, { AxiosError } from 'axios'
+import { Loader2Icon } from 'lucide-react'
+import { signIn } from 'next-auth/react'
+import { ChangeEvent, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import Mask from '../Mask'
+import { Button } from '../ui/button'
 import {
   Form,
   FormControl,
@@ -10,17 +19,8 @@ import {
   FormMessage
 } from '../ui/form'
 import { Input } from '../ui/input'
-import BaseFormAuth from './BaseFormAuth'
-import { SignUpRequest, SignUpValidator } from '@/lib/validators/AuthValidator'
-import { zodResolver } from '@hookform/resolvers/zod'
-import axios, { AxiosError } from 'axios'
-import { Button } from '../ui/button'
-import { useMutation } from '@tanstack/react-query'
 import { useToast } from '../ui/use-toast'
-import { ChangeEvent, useState } from 'react'
-import { Loader2Icon } from 'lucide-react'
-import { signIn } from 'next-auth/react'
-import Mask from '../Mask'
+import BaseFormAuth from './BaseFormAuth'
 
 const SignUpForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -95,7 +95,7 @@ const SignUpForm = () => {
     const payload: SignUpRequest = {
       name: form.getValues('name'),
       nickname: form.getValues('nickname'),
-      email: form.getValues('email'),
+      email: form.getValues('email').toLocaleLowerCase(),
       phone: form.getValues('phone'),
       password: form.getValues('password'),
       confirmPassword: form.getValues('confirmPassword')
