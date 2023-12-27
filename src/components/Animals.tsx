@@ -31,9 +31,9 @@ const Animals = ({ page, postsPerPage, totalItems }: AnimalsProps) => {
 
   if (data.length === 0)
     return (
-      <h1 className='text-center text-lg font-semibold very-xs:text-xl'>
+      <h3 className='text-center text-lg font-semibold very-xs:text-xl'>
         Nenhum animal encontrado.
-      </h1>
+      </h3>
     )
 
   return (
