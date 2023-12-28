@@ -1,5 +1,12 @@
 'use client'
 
+import { cn } from '@/lib/utils'
+import { User2Icon } from 'lucide-react'
+import { Session } from 'next-auth'
+import { signOut } from 'next-auth/react'
+import Link from 'next/link'
+import { Avatar } from '../ui/avatar'
+import { Button, buttonVariants } from '../ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,13 +14,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '../ui/dropdown-menu'
-import { Avatar } from '../ui/avatar'
-import { User2Icon } from 'lucide-react'
-import { Button, buttonVariants } from '../ui/button'
-import { Session } from 'next-auth'
-import { signOut } from 'next-auth/react'
-import Link from 'next/link'
-import { cn } from '@/lib/utils'
 
 interface UserNavbarProps {
   session: Session | null

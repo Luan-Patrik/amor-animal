@@ -1,10 +1,10 @@
+import { cn } from '@/lib/utils'
+import { ArrowRightIcon, XIcon } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 import { ReactNode } from 'react'
 import { buttonVariants } from '../ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card'
-import Link from 'next/link'
-import { cn } from '@/lib/utils'
-import Image from 'next/image'
-import { ArrowRightIcon, XIcon } from 'lucide-react'
 
 interface BaseFormAuthProps {
   header: string

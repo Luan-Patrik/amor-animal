@@ -3,10 +3,7 @@
 import { useGetAnimals } from '@/hooks/use-get-animals'
 import Image from 'next/image'
 import { SwiperSlide } from 'swiper/react'
-import { cn } from '@/lib/utils'
-import Link from 'next/link'
-import { Icons } from './ui/Icons'
-import { buttonVariants } from './ui/button'
+import AnimalCardInformation from './AnimalCardInformation'
 import AnimalsSkeleton from './AnimalsSkeleton'
 import { Slider } from './Slider'
 
@@ -31,9 +28,9 @@ const Animals = ({ page, postsPerPage, totalItems }: AnimalsProps) => {
 
   if (data.length === 0)
     return (
-      <h1 className='text-center text-lg font-semibold very-xs:text-xl'>
+      <h3 className='text-center text-lg font-semibold very-xs:text-xl'>
         Nenhum animal encontrado.
-      </h1>
+      </h3>
     )
 
   return (
@@ -47,7 +44,7 @@ const Animals = ({ page, postsPerPage, totalItems }: AnimalsProps) => {
               <SwiperSlide
                 key={i}
                 virtualIndex={i}
-                className='relative block h-[12.5rem] w-[19rem] select-none overflow-hidden rounded-md bg-muted ring-1'>
+                className='relative block h-[12.5rem] w-full select-none overflow-hidden rounded-md bg-muted ring-1'>
                 <Image
                   src={image}
                   placeholder='blur'
@@ -59,33 +56,11 @@ const Animals = ({ page, postsPerPage, totalItems }: AnimalsProps) => {
               </SwiperSlide>
             ))}
           </Slider>
-          <div className='flex flex-col items-center justify-center gap-2 very-xs:flex-row very-xs:justify-between'>
-            <Link
-              href={`/animal/${item.id}`}
-              className={cn(
-                buttonVariants({ variant: 'link' }),
-                'h-auto overflow-hidden p-0 ring-offset-muted '
-              )}>
-              <p className='w-full overflow-hidden text-ellipsis whitespace-nowrap text-lg font-bold first-letter:uppercase'>
-                {item.name}
-              </p>
-            </Link>
-            <Link
-              href={`https://api.whatsapp.com/send?phone=55${item.user.phone.replace(
-                /\D/g,
-                ''
-              )}`}
-              target='_blank'
-              referrerPolicy='no-referrer'
-              rel='noopener noreferrer'
-              className={cn(
-                buttonVariants({ variant: 'link' }),
-                'h-auto gap-0.5 p-0 leading-relaxed ring-offset-muted'
-              )}>
-              <Icons.whatsapp className='h-[1.2rem] w-[1.2rem] fill-green-500' />
-              {item.user.phone}
-            </Link>
-          </div>
+          <AnimalCardInformation
+            name={item.name}
+            phone={item.user.phone}
+            id={item.id}
+          />
         </div>
       ))}
     </div>

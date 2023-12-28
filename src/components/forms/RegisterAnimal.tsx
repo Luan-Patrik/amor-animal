@@ -1,6 +1,20 @@
 'use client'
 
+import {
+  RegisterAnimalRequest,
+  RegisterAnimalValidator
+} from '@/lib/validators/RegisterAnimalValidator'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import axios from 'axios'
+import { Loader2Icon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { fileToBase64 } from '../ConvertBase64'
+import { ImageInputFileDropzone } from '../ImageInputFileDropzone'
+import { Button } from '../ui/button'
+import { Card, CardContent, CardHeader } from '../ui/card'
 import {
   Form,
   FormControl,
@@ -9,22 +23,8 @@ import {
   FormLabel,
   FormMessage
 } from '../ui/form'
-import { Card, CardContent, CardHeader } from '../ui/card'
-import { Textarea } from '../ui/textarea'
-import { Button } from '../ui/button'
-import { ImageInputFileDropzone } from '../ImageInputFileDropzone'
-import { useState } from 'react'
-import {
-  RegisterAnimalRequest,
-  RegisterAnimalValidator
-} from '@/lib/validators/RegisterAnimalValidator'
-import { zodResolver } from '@hookform/resolvers/zod'
-import axios from 'axios'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Input } from '../ui/input'
-import { fileToBase64 } from '../ConvertBase64'
-import { Loader2Icon } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { Textarea } from '../ui/textarea'
 
 const RegisterAnimal = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)

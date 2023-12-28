@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import prisma from '@/lib/db'
 import { RegisterAnimalValidator } from '@/lib/validators/RegisterAnimalValidator'
+import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
   try {

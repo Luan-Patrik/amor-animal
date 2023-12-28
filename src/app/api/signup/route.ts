@@ -1,8 +1,8 @@
-import { NextResponse } from 'next/server'
-import bcryptjs from 'bcryptjs'
 import { auth } from '@/lib/auth'
 import prisma from '@/lib/db'
 import { SignUpValidator } from '@/lib/validators/AuthValidator'
+import bcryptjs from 'bcryptjs'
+import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
   try {

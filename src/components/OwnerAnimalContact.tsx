@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card'
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 import { buttonVariants } from './ui/button'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card'
 
 interface OwnerAnimalContactProps {
   nickname: string

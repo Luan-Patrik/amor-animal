@@ -1,6 +1,14 @@
 'use client'
 
 import { useGetDetailAnimal } from '@/hooks/use-get-detail-animal'
+import { useSession } from 'next-auth/react'
+import Image from 'next/image'
+import { notFound } from 'next/navigation'
+import { SwiperSlide } from 'swiper/react'
+import DeleteAnimalPost from './DeleteAnimalPost'
+import DetailAnimalSkeleton from './DetailAnimalSkeleton'
+import OwnerAnimalContact from './OwnerAnimalContact'
+import { Slider } from './Slider'
 import {
   Card,
   CardContent,
@@ -8,12 +16,6 @@ import {
   CardHeader,
   CardTitle
 } from './ui/card'
-import { SwiperSlide } from 'swiper/react'
-import { Slider } from './Slider'
-import Image from 'next/image'
-import DetailAnimalSkeleton from './DetailAnimalSkeleton'
-import OwnerAnimalContact from './OwnerAnimalContact'
-import { notFound } from 'next/navigation'
 
 interface DetailAnimalProps {
   id: string
@@ -21,6 +23,7 @@ interface DetailAnimalProps {
 
 const DetailAnimal = ({ id }: DetailAnimalProps) => {
   const { data, isLoading } = useGetDetailAnimal(id)
+  const { data: session } = useSession()
 
   if (isLoading) return <DetailAnimalSkeleton />
 
@@ -28,7 +31,7 @@ const DetailAnimal = ({ id }: DetailAnimalProps) => {
 
   return (
     <section className='container flex flex-col gap-2 lg:flex-row'>
-      <Card className='w-full overflow-hidden'>
+      <Card className='relative w-full overflow-hidden'>
         <CardHeader>
           <CardTitle className='break-words'>{data.name}</CardTitle>
         </CardHeader>
@@ -52,6 +55,11 @@ const DetailAnimal = ({ id }: DetailAnimalProps) => {
             ))}
           </Slider>
         </CardContent>
+        {session?.user.id === data.userId ? (
+          <div className='absolute right-4 top-6'>
+            <DeleteAnimalPost id={data.id} />
+          </div>
+        ) : null}
       </Card>
       <OwnerAnimalContact
         nickname={data.user.nickname}
