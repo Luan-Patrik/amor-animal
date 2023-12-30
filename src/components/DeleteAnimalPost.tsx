@@ -1,7 +1,10 @@
+'use client'
+
 import { AnimalRequest } from '@/lib/validators/AnimalValidator'
-import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import axios, { AxiosError } from 'axios'
 import { MoreVertical } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { Button } from './ui/button'
 import {
   DropdownMenu,
@@ -9,12 +12,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from './ui/dropdown-menu'
+import { useToast } from './ui/use-toast'
 
 interface DeleteAnimalPostProps {
   id: string
 }
 
 const DeleteAnimalPost = ({ id }: DeleteAnimalPostProps) => {
+  const queryClient = useQueryClient()
+  const router = useRouter()
+  const { toast } = useToast()
   const { mutate: deleteAnimal } = useMutation({
     mutationKey: ['delete-animal-post'],
     mutationFn: async ({ id }: AnimalRequest) => {
@@ -26,6 +33,28 @@ const DeleteAnimalPost = ({ id }: DeleteAnimalPostProps) => {
         data: payload
       })
       return data
+    },
+
+    onSuccess: () => {
+      queryClient.refetchQueries()
+      router.push('/')
+      return toast({
+        title: 'Sucesso.',
+        description: 'Post apagado com sucesso.',
+        variant: 'default'
+      })
+    },
+
+    onError: (error) => {
+      if (error instanceof AxiosError) {
+        toast({
+          title: 'Algo deu errado.',
+          description: error.response
+            ? error.response.data
+            : 'Ops! Algo deu errado. Por favor, tente novamente mais tarde.',
+          variant: 'destructive'
+        })
+      }
     }
   })
 

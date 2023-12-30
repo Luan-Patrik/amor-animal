@@ -1,4 +1,5 @@
 import AnimalsUser from '@/components/AnimalsUser'
+import { POSTS_PER_PAGE } from '@/config'
 import prisma from '@/lib/db'
 import { notFound } from 'next/navigation'
 
@@ -22,7 +23,7 @@ export default async function UserPage({
     <AnimalsUser
       nickname={nickname}
       page={page}
-      postsPerPage={5}
+      postsPerPage={POSTS_PER_PAGE}
       totalItems={totalItems}
     />
   )

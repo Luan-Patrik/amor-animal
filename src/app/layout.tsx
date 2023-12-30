@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang='pt' className={lato.variable}>
+    <html lang='pt' className={lato.variable} suppressHydrationWarning>
       <body>
         <Providers>
           <Navbar />
