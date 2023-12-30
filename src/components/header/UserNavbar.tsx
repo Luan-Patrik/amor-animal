@@ -1,7 +1,8 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { User2Icon } from 'lucide-react'
+import { DropdownMenuArrow } from '@radix-ui/react-dropdown-menu'
+import { ChevronUp, User2Icon } from 'lucide-react'
 import { Session } from 'next-auth'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
@@ -11,6 +12,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '../ui/dropdown-menu'
@@ -41,7 +43,16 @@ const UserNavbar = ({ session }: UserNavbarProps) => {
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
+          <DropdownMenuContent className='w-[15rem]' align='end' >
+            <DropdownMenuArrow className='fill-input'></DropdownMenuArrow>
+            <DropdownMenuLabel>{session.user.nickname}</DropdownMenuLabel>
+            <DropdownMenuLabel className='overflow-x-hidden break-words text-sm font-normal'>
+              {session.user.email}
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              <Link href={`/${session.user.nickname}`}>Meus animais</Link>
+            </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link href='/animais/1'>Ver animais</Link>
             </DropdownMenuItem>

@@ -2,8 +2,8 @@
 
 import { POSTS_PER_PAGE } from '@/config'
 import { notFound } from 'next/navigation'
-import Animals from './Animals'
 import PaginationPage from './PaginationPage'
+import TotalAnimals from './TotalAnimals'
 
 interface PaginatedAnimalsProps {
   page: string | number
@@ -15,7 +15,7 @@ const PaginatedAnimals = ({ page, totalItems }: PaginatedAnimalsProps) => {
 
   return (
     <>
-      <Animals
+      <TotalAnimals
         page={page}
         postsPerPage={POSTS_PER_PAGE}
         totalItems={totalItems}

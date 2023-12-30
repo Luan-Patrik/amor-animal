@@ -52,6 +52,12 @@ export const config = {
     })
   ],
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      return url.startsWith(baseUrl)
+        ? Promise.resolve(url)
+        : Promise.resolve(baseUrl)
+    },
+
     async session({ token, session }) {
       if (token) {
         session.user.id = token.id

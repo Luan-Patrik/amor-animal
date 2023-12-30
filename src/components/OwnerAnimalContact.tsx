@@ -10,7 +10,7 @@ interface OwnerAnimalContactProps {
 
 const OwnerAnimalContact = ({ nickname, phone }: OwnerAnimalContactProps) => {
   return (
-    <Card className='h-fit w-full overflow-x-auto lg:sticky lg:top-[4.6rem] lg:w-[28rem]'>
+    <Card className='h-fit overflow-x-auto lg:sticky lg:top-[4.6rem] lg:w-[28rem]'>
       <CardHeader className='px-2'>
         <CardTitle>Entre em contato</CardTitle>
       </CardHeader>
